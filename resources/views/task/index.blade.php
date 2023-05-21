@@ -15,11 +15,13 @@
         <h1 class="text-2xl font-medium title-font text-gray-900 uppercase">Todo List</h1>
     </div>
 
+    @include('components.modal-create')
+
     {{-- Incomplete --}}
     <div class="mx-5 mt-5">
         <div class="flex justify-between align-items-center mb-3">
             <h2 class="text-2xl text-gray-900 font-medium title-font">Incomplete</h2>
-            <button class="bg-violet-500 rounded-sm px-4 py-2 text-white font-semibold
+            <button id="open_create" class="bg-violet-500 rounded-sm px-4 py-2 text-white font-semibold
             ">
                 Add Task
             </button>
@@ -82,6 +84,44 @@
         </div>
     </div>
 
+
+
+    <!-- Javascript code -->
+    <script>
+        let overlay = document.getElementById('overlay');
+
+        let openCreate = document.getElementById('open_create');
+        let dialogCreate = document.getElementById('dialog_create');
+        let closeCreate = document.getElementById('close_create');
+
+        let openEdit = document.getElementById('open_edit');
+        let dialogEdit = document.getElementById('dialog_edit');
+        let closeEdit = document.getElementById('close_edit');
+
+        // show the overlay and the dialog
+        openCreate.addEventListener('click', function() {
+            dialogCreate.classList.remove('hidden');
+            overlay.classList.remove('hidden');
+        });
+        openEdit.addEventListener('click', function() {
+            dialogEdit.classList.remove('hidden');
+            overlay.classList.remove('hidden');
+        });
+
+        // hide the overlay and the dialog
+        closeCreate.addEventListener('click', function() {
+            dialogCreate.classList.add('hidden');
+            overlay.classList.add('hidden');
+        });
+        // closeEdit.addEventListener('click', function() {
+        //     dialogEdit.classList.add('hidden');
+        //     overlay.classList.add('hidden');
+        // });
+        overlay.addEventListener('click', function() {
+            dialogCreate.classList.add('hidden');
+            overlay.classList.add('hidden');
+        });
+    </script>
 </body>
 
 </html>
